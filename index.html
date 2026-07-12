@@ -1,171 +1,434 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Mobile App Documentation</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>دليل المستخدم · وصل</title>
+  <!-- index.css (مضمّن) -->
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-    <link rel="stylesheet" href="index.css">
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: #f4faff;
+      color: #1a2b3c;
+      padding: 1.5rem 1rem 3rem;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      background: rgba(255,255,255,0.75);
+      backdrop-filter: blur(2px);
+      border-radius: 2rem;
+      box-shadow: 0 20px 40px -12px rgba(0, 140, 186, 0.25);
+      padding: 2rem 1.8rem;
+      border: 1px solid rgba(0, 188, 212, 0.15);
+    }
+
+    /* الفهرس العصري */
+    .toc {
+      background: #e0f7fc;
+      padding: 1.8rem 1.8rem 1.2rem;
+      border-radius: 2rem;
+      margin-bottom: 2.8rem;
+      box-shadow: inset 0 2px 8px rgba(0,180,200,0.08), 0 8px 18px rgba(0,160,190,0.10);
+      border: 1px solid #b2ebf2;
+    }
+
+    .toc h2 {
+      color: #006f7a;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 0.9rem;
+      font-size: 1.7rem;
+    }
+    .toc h2::before {
+      content: "📑";
+      font-size: 1.8rem;
+    }
+
+    .toc-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1.2rem;
+      justify-content: flex-start;
+    }
+
+    .toc-item {
+      background: white;
+      padding: 0.3rem 1.2rem 0.3rem 1.8rem;
+      border-radius: 40px;
+      font-weight: 500;
+      font-size: 0.95rem;
+      color: #006064;
+      box-shadow: 0 2px 6px rgba(0, 150, 170, 0.08);
+      border: 1px solid #b2ebf2;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .toc-item:hover {
+      background: #00bcd4;
+      color: white;
+      border-color: #00bcd4;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 14px -6px rgba(0, 170, 190, 0.3);
+    }
+    .toc-item a {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    /* عناوين الفقرات */
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 2.8rem 0 0.8rem 0;
+      padding-bottom: 0.4rem;
+      border-bottom: 4px solid #4dd0e1;
+      display: inline-block;
+      color: #006064;
+      letter-spacing: -0.3px;
+    }
+
+    .section-title small {
+      font-size: 1rem;
+      font-weight: 400;
+      color: #2c7a7a;
+      margin-right: 12px;
+    }
+
+    .card-content {
+      background: white;
+      border-radius: 1.8rem;
+      padding: 1.6rem 1.8rem 1.8rem;
+      margin: 0.5rem 0 2rem 0;
+      box-shadow: 0 6px 18px rgba(0, 160, 180, 0.06);
+      border: 1px solid #d4f0f5;
+    }
+
+    .card-content p {
+      margin-bottom: 1.2rem;
+      color: #1e3a41;
+      font-size: 1.1rem;
+    }
+
+    .image-grid {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      gap: 1.2rem 1.8rem;
+      margin: 1.2rem 0 0.8rem;
+    }
+
+    .img-placeholder {
+      background: #f2f9fc;
+      border-radius: 1.5rem;
+      padding: 0.5rem 1rem 0.5rem 1.2rem;
+      border: 1px dashed #56c8d6;
+      color: #006f7a;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+      font-size: 0.95rem;
+    }
+
+    .img-placeholder::before {
+      content: "🖼️";
+      font-size: 1.2rem;
+    }
+
+    .image-grid img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 1.8rem;
+      box-shadow: 0 12px 24px -12px rgba(0, 80, 100, 0.2);
+      border: 1px solid #d4ecf2;
+      background: #f4feff;
+      max-height: 300px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .image-grid .img-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .badge-light {
+      background: #d7f2f7;
+      color: #00545c;
+      border-radius: 30px;
+      padding: 0.1rem 1rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    hr {
+      border: 1px solid #c0eaf0;
+      margin: 1.8rem 0 0.5rem;
+      opacity: 0.5;
+    }
+
+    /* تنسيق الصور مع placeholder */
+    .flex-images {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1.2rem 1.8rem;
+    }
+
+    .inline-img {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      background: #f7fdfe;
+      padding: 0.3rem 0.3rem 0.6rem;
+      border-radius: 1.8rem;
+      border: 1px solid #d0edf2;
+    }
+
+    .inline-img img {
+      max-height: 200px;
+      border-radius: 1.5rem;
+      width: auto;
+    }
+
+    .inline-img .fallback {
+      padding: 0.8rem 2rem;
+      background: #e5f6fa;
+      border-radius: 1.5rem;
+      color: #006a73;
+      font-weight: 500;
+    }
+
+    /* زر العودة للفهرس */
+    .back-toc {
+      display: inline-block;
+      margin-top: 0.8rem;
+      background: #e0f4f8;
+      padding: 0.2rem 1.5rem;
+      border-radius: 40px;
+      color: #00707a;
+      font-weight: 500;
+      font-size: 0.9rem;
+      border: 1px solid #9dd9e6;
+      transition: 0.15s;
+    }
+    .back-toc:hover {
+      background: #00bcd4;
+      color: white;
+      border-color: #00bcd4;
+    }
+
+    /* عناصر إضافية */
+    .mt-2 { margin-top: 1.2rem; }
+
+    @media (max-width: 600px) {
+      .container { padding: 1.2rem; }
+      .section-title { font-size: 1.6rem; }
+      .toc-grid { gap: 0.3rem; }
+    }
+  </style>
 </head>
 <body>
+<div class="container" id="top">
 
-<header>
-    <div class="container">
-        <h1>My Mobile App</h1>
-        <p>Official Documentation</p>
-
-        <nav>
-            <a href="#overview">Overview</a>
-            <a href="#features">Features</a>
-            <a href="#installation">Installation</a>
-            <a href="#permissions">Permissions</a>
-            <a href="#faq">FAQ</a>
-            <a href="#contact">Contact</a>
-        </nav>
+  <!-- الفهرس -->
+  <div class="toc">
+    <h2>فهرس الدليل</h2>
+    <div class="toc-grid">
+      <span class="toc-item"><a href="#sec1">١. شاشة الترحيب</a></span>
+      <span class="toc-item"><a href="#sec2">٢. تسجيل الهاتف مع المستخدم</a></span>
+      <span class="toc-item"><a href="#sec3">٣. الشاشة الرئيسية</a></span>
+      <span class="toc-item"><a href="#sec4">٤. الحضور والانصراف</a></span>
+      <span class="toc-item"><a href="#sec5">٥. خدمة الرسوم الدراسية</a></span>
+      <span class="toc-item"><a href="#sec6">٦. سير العمل على الطلبات</a></span>
+      <span class="toc-item"><a href="#sec7">٧. السلفيات</a></span>
     </div>
-</header>
-
-<section class="hero">
-    <div class="container">
-        <h2>Welcome</h2>
-        <p>
-            This documentation explains how to install, configure and use the mobile application.
-        </p>
-
-        <button id="themeBtn">
-            🌙 Dark Mode
-        </button>
+    <div style="margin-top: 12px; color: #00838f; font-size: 0.95rem; border-top: 1px solid #b2e5ed; padding-top: 12px;">
+      ⚡ تطبيق <strong>وصل</strong> · الحضور والانصراف + الخدمات البنكية
     </div>
-</section>
+  </div>
 
-<section id="overview" class="container">
-    <h2>Overview</h2>
+  <!-- مقدمة -->
+  <div style="background: #d1f0f5; border-radius: 2rem; padding: 1.2rem 2rem; margin-bottom: 2.2rem; border-right: 6px solid #00acc1;">
+    <p style="font-size: 1.2rem; font-weight: 500; color: #004d54;">📌 مقدمة</p>
+    <p style="font-size: 1.05rem;">تطبيق <strong>وصل</strong> ينقسم إلى جزئين رئيسيين: <strong>الحضور والانصراف</strong>، و<strong>خدمات البنك</strong> (الرسوم الدراسية، السلفيات بأنواعها، وسيتم إضافة باقي الخدمات تباعاً). هذا الدليل يشرح جميع الشاشات والوظائف.</p>
+  </div>
 
-    <p>
-        This application helps users manage their daily activities while providing
-        secure authentication, notifications, offline support and synchronization.
-    </p>
-</section>
-
-<section id="features" class="container">
-    <h2>Features</h2>
-
-    <div class="cards">
-
-        <div class="card">
-            <h3>Authentication</h3>
-            <p>Secure login using email and password.</p>
-        </div>
-
-        <div class="card">
-            <h3>Offline Mode</h3>
-            <p>Continue working even without internet.</p>
-        </div>
-
-        <div class="card">
-            <h3>Notifications</h3>
-            <p>Receive instant push notifications.</p>
-        </div>
-
-        <div class="card">
-            <h3>Synchronization</h3>
-            <p>Automatic data synchronization with the server.</p>
-        </div>
-
+  <!-- ======= الفقرة 1 ======= -->
+  <h2 class="section-title" id="sec1">١. شاشة الترحيب <small>صورة 1.png</small></h2>
+  <div class="card-content">
+    <p>هذه هي الشاشة التي تظهر للمستخدم عندما يقوم بفتح التطبيق. وعند الضغط على <strong>تسجيل الدخول</strong> ستظهر له الشاشة التالية حيث سيقوم بإدخال بيانات الدخول الخاصة به.</p>
+    <div class="image-grid">
+      <div class="img-wrapper">
+        <img src="pictures/1.png" alt="1.png" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';">
+        <span class="img-placeholder" style="display:none;">1.png (غير موجودة)</span>
+      </div>
+      <div class="img-wrapper">
+        <img src="pictures/2.png" alt="2.png" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';">
+        <span class="img-placeholder" style="display:none;">2.png (غير موجودة)</span>
+      </div>
     </div>
-</section>
+    <div class="back-toc"><a href="#top" style="text-decoration:none; color:inherit;">⬆ عودة للفهرس</a></div>
+  </div>
 
-<section id="installation" class="container">
-    <h2>Installation</h2>
-
-    <ol>
-        <li>Download the application.</li>
-        <li>Install it on your device.</li>
-        <li>Open the application.</li>
-        <li>Login using your credentials.</li>
-    </ol>
-</section>
-
-<section id="permissions" class="container">
-    <h2>Permissions</h2>
-
-    <table>
-        <thead>
-        <tr>
-            <th>Permission</th>
-            <th>Reason</th>
-        </tr>
-        </thead>
-
-        <tbody>
-        <tr>
-            <td>Location</td>
-            <td>Display nearby services.</td>
-        </tr>
-
-        <tr>
-            <td>Camera</td>
-            <td>Scan QR codes.</td>
-        </tr>
-
-        <tr>
-            <td>Storage</td>
-            <td>Download and upload files.</td>
-        </tr>
-
-        <tr>
-            <td>Notifications</td>
-            <td>Receive important alerts.</td>
-        </tr>
-        </tbody>
-    </table>
-</section>
-
-<section id="faq" class="container">
-
-    <h2>Frequently Asked Questions</h2>
-
-    <div class="faq">
-
-        <button class="accordion">
-            How do I reset my password?
-        </button>
-
-        <div class="panel">
-            <p>
-                Tap "Forgot Password" on the login screen and follow the instructions.
-            </p>
-        </div>
-
-        <button class="accordion">
-            Does the app work offline?
-        </button>
-
-        <div class="panel">
-            <p>
-                Yes. Some features remain available without internet.
-            </p>
-        </div>
-
+  <!-- ======= الفقرة 2 ======= -->
+  <h2 class="section-title" id="sec2">٢. تسجيل الهاتف مع المستخدم <small>صورة 3.png</small></h2>
+  <div class="card-content">
+    <p>يقوم تطبيق <strong>وصل</strong> بتسجيل بيانات الهاتف مع بيانات المستخدم، وذلك للحفاظ على خصوصية المستخدمين وعدم تمكين أي شخص من تسجيل الدخول إلى حساب المستخدم من جهاز آخر. وتبدأ العملية بتأكيد هوية المستخدم من خلال إدخال الكود الذي يتم استقباله عبر البريد الإلكتروني الخاص بالمستخدم.</p>
+    <div class="image-grid">
+      <div class="img-wrapper">
+        <img src="pictures/3.png" alt="3.png" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';">
+        <span class="img-placeholder" style="display:none;">3.png (غير موجودة)</span>
+      </div>
     </div>
+    <div class="back-toc"><a href="#top" style="text-decoration:none; color:inherit;">⬆ عودة للفهرس</a></div>
+  </div>
 
-</section>
+  <!-- ======= الفقرة 3 ======= -->
+  <h2 class="section-title" id="sec3">٣. الشاشة الرئيسية <small>صورة 4.png</small></h2>
+  <div class="card-content">
+    <p>في الصفحة الرئيسية يمكن للمستخدم أن ينتقل بين الخدمات المختلفة أو الحضور والانصراف. فكما أسلفنا، فإن التطبيق يخدم غرضين حالياً: <strong>الحضور والانصراف</strong> وعدد من الخدمات.</p>
+    <div class="image-grid">
+      <div class="img-wrapper">
+        <img src="pictures/4.png" alt="4.png" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';">
+        <span class="img-placeholder" style="display:none;">4.png (غير موجودة)</span>
+      </div>
+    </div>
+    <div class="back-toc"><a href="#top" style="text-decoration:none; color:inherit;">⬆ عودة للفهرس</a></div>
+  </div>
 
-<section id="contact" class="container">
+  <!-- ======= الفقرة 4 ======= -->
+  <h2 class="section-title" id="sec4">٤. الحضور والانصراف <small>5.png , 6.png</small></h2>
+  <div class="card-content">
+    <p>الحضور والانصراف حالياً يقوم بعدد من العمليات، منها تحديد أيام التأخير وتحديد دقائق التأخير، إضافة إلى عرض سجل الحضور والانصراف. كما يمكن المستخدم من تسجيل الحضور وتسجيل الانصراف.</p>
+    <div class="image-grid">
+      <div class="img-wrapper"><img src="pictures/5.png" alt="5.png" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';"><span class="img-placeholder" style="display:none;">5.png</span></div>
+      <div class="img-wrapper"><img src="pictures/6.png" alt="6.png" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';"><span class="img-placeholder" style="display:none;">6.png</span></div>
+    </div>
+    <p style="margin-top: 1.4rem;"><strong>وتتم عملية تسجيل الحضور من خلال إحدى طريقتين:</strong></p>
+    <ul style="list-style-type: disc; padding-right: 2rem; margin-bottom: 1rem; color: #004d54;">
+      <li>مسح رمز <strong>QR</strong> والذي يظهر على التطبيق بواسطة جهاز مسح الـ QR الذي يكون بحوزة رجال الأمن.</li>
+      <li>عن طريق الاتصال بالـ <strong>WiFi</strong> الخاص بالبنك، حيث يقوم التطبيق مباشرة بتسجيل الحضور لك بعد التأكد من تواجدك داخل مباني البنك.</li>
+    </ul>
+    <div class="image-grid">
+      <div class="img-wrapper"><img src="pictures/7.png" alt="7.png" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';"><span class="img-placeholder" style="display:none;">7.png (QR)</span></div>
+      <div class="img-wrapper"><img src="pictures/8.png" alt="8.png" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';"><span class="img-placeholder" style="display:none;">8.png (WiFi)</span></div>
+      <div class="img-wrapper"><img src="pictures/9.png" alt="9.png" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';"><span class="img-placeholder" style="display:none;">9.png (موقع مزيف)</span></div>
+    </div>
+    <div class="back-toc"><a href="#top" style="text-decoration:none; color:inherit;">⬆ عودة للفهرس</a></div>
+  </div>
 
-    <h2>Contact</h2>
+  <!-- ======= الفقرة 5 ======= -->
+  <h2 class="section-title" id="sec5">٥. خدمة الرسوم الدراسية <small>10.png , 11.png , 12.png</small></h2>
+  <div class="card-content">
+    <p>عند الضغط على خدمة <strong>الرسوم الدراسية</strong> سينتقل المستخدم إلى شاشة عرض طلبات المستخدمين / طلباته فقط حسب صلاحياته، وتكون مقسمة إلى مكتملة أو غير مكتملة. عند الضغط على زر <strong>+</strong> سينتقل المستخدم إلى شاشة تقديم الطلبات، وعند الضغط على زر <strong>العين</strong> سينتقل إلى شاشة التفاصيل.</p>
+    <div class="image-grid">
+      <div class="img-wrapper"><img src="pictures/10.png" alt="10.png" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';"><span class="img-placeholder" style="display:none;">10.png (جدول الطلبات)</span></div>
+      <div class="img-wrapper"><img src="pictures/11.png" alt="11.png" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';"><span class="img-placeholder" style="display:none;">11.png (تفاصيل)</span></div>
+      <div class="img-wrapper"><img src="pictures/12.png" alt="12.png" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';"><span class="img-placeholder" style="display:none;">12.png (استمارة)</span></div>
+    </div>
+    <div class="back-toc"><a href="#top" style="text-decoration:none; color:inherit;">⬆ عودة للفهرس</a></div>
+  </div>
 
-    <p>Email: support@example.com</p>
+  <!-- ======= الفقرة 6 ======= -->
+  <h2 class="section-title" id="sec6">٦. تطبيق سير العمل على الطلبات <small>13.png</small></h2>
+  <div class="card-content">
+    <p>من خلال تطبيق <strong>وصل</strong> يمكن اتباع سير عمل منظم ومطابق لسير العمل المعمول به حالياً، وفقاً لصلاحيات معينة تمنح للمستخدمين وتمكنهم من تنفيذ مهامهم.</p>
+    <div class="image-grid">
+      <div class="img-wrapper"><img src="pictures/13.png" alt="13.png" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';"><span class="img-placeholder" style="display:none;">13.png (سير العمل)</span></div>
+    </div>
+    <div class="back-toc"><a href="#top" style="text-decoration:none; color:inherit;">⬆ عودة للفهرس</a></div>
+  </div>
 
-    <p>Version: 1.0.0</p>
+  <!-- ======= الفقرة 7 ======= -->
+  <h2 class="section-title" id="sec7">٧. السلفيات <small>14.png , 10–12.png</small></h2>
+  <div class="card-content">
+    <p>لا تختلف السلفيات عن خدمة الرسوم الدراسية كثيراً، ففيها نفس التفاصيل، إلا أن الاختلاف هنا يكمن في وجود أنواع مختلفة للسلفيات (سيارات، عقارات، خاصة، استثنائية). وتظهر هذه الأنواع للمستخدمين حسب استحقاقهم للسلفيات؛ فإذا كان الموظف لا يستحق السلفية فلن تظهر له.</p>
+    <div class="image-grid">
+      <div class="img-wrapper"><img src="pictures/14.png" alt="14.png" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';"><span class="img-placeholder" style="display:none;">14.png (تصنيفات السلفيات)</span></div>
+    </div>
+    <p style="margin-top: 1.2rem;">عند الضغط على أي سلفية سينتقل المستخدم إلى شاشة عرض طلبات المستخدمين/طلباته فقط حسب صلاحياته، وتكون مقسمة إلى مكتملة أو غير مكتملة. عند الضغط على زر <strong>+</strong> سينتقل إلى شاشة تقديم الطلبات، وعند الضغط على زر <strong>العين</strong> سينتقل إلى شاشة التفاصيل.</p>
+    <div class="image-grid">
+      <div class="img-wrapper"><img src="pictures/10.png" alt="10.png" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';"><span class="img-placeholder" style="display:none;">10.png (جدول الطلبات)</span></div>
+      <div class="img-wrapper"><img src="pictures/11.png" alt="11.png" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';"><span class="img-placeholder" style="display:none;">11.png (تفاصيل)</span></div>
+      <div class="img-wrapper"><img src="pictures/12.png" alt="12.png" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';"><span class="img-placeholder" style="display:none;">12.png (استمارة)</span></div>
+    </div>
+    <div class="back-toc"><a href="#top" style="text-decoration:none; color:inherit;">⬆ عودة للفهرس</a></div>
+  </div>
 
-</section>
+  <!-- تذييل -->
+  <hr>
+  <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; padding-top: 0.8rem; color: #00707a;">
+    <span>📘 دليل مستخدم <strong>وصل</strong> · جميع الحقوق محفوظة</span>
+    <span style="background: #d1f0f5; padding: 0.2rem 1.2rem; border-radius: 40px;">🔄 تحديث 2026</span>
+  </div>
+</div>
 
-<footer>
-    © 2026 My Mobile App. All rights reserved.
-</footer>
+<!-- index.js (خفيف) -->
+<script>
+  (function() {
+    // تحسين تجربة المستخدم: عند النقر على أي رابط فهرس يتم التمرير بسلاسة
+    document.querySelectorAll('.toc-item a, .back-toc a').forEach(link => {
+      link.addEventListener('click', function(e) {
+        const targetId = this.getAttribute('href');
+        if (targetId && targetId.startsWith('#')) {
+          e.preventDefault();
+          const targetEl = document.querySelector(targetId);
+          if (targetEl) {
+            targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+      });
+    });
 
-<script src="index.js"></script>
+    // التحقق من الصور وعرض placeholder بدلاً من الخطأ (تم بالفعل عبر onerror)
+    // لكن نضيف إعادة فحص للصور التي قد يكون حدث بها خطأ
+    const images = document.querySelectorAll('img');
+    images.forEach(img => {
+      img.addEventListener('error', function() {
+        // إذا كان الخطأ ولم يظهر placeholder تلقائياً بسبب onerror
+        // نبحث عن العنصر الشقيق .img-placeholder
+        const parent = this.parentElement;
+        const placeholder = parent.querySelector('.img-placeholder');
+        if (placeholder) {
+          this.style.display = 'none';
+          placeholder.style.display = 'inline-flex';
+        }
+      });
+      // إذا لم تكن الصورة موجودة فعلاً ولكن onerror قد فشل لسبب ما
+      // نتحقق من complete
+      if (img.complete && img.naturalWidth === 0 && !img.src.includes('placeholder')) {
+        const parent = img.parentElement;
+        const placeholder = parent.querySelector('.img-placeholder');
+        if (placeholder) {
+          img.style.display = 'none';
+          placeholder.style.display = 'inline-flex';
+        }
+      }
+    });
 
+    // إضافة صغير: إذا كان هناك صور بدون امتداد .png/.jpg الخ، نتركها.
+    console.log('✅ دليل المستخدم جاهز (وصل)');
+  })();
+</script>
 </body>
 </html>
